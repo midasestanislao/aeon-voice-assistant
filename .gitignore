@@ -9,6 +9,9 @@ __pycache__/
 .env.*
 !.env.example
 
+# Voicebox checkout (its own repo and environment), if cloned inside the project
+voicebox/
+
 # Conversation memory and generated audio
 outputs/
 *.wav

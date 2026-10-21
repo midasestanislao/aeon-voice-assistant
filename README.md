@@ -70,10 +70,11 @@ uv sync                      # creates .venv with Python 3.12 and the dependenci
 copy .env.example .env       # then set OPENROUTER_API_KEY
 ```
 
-Start the Voicebox backend (from a Voicebox checkout with its own environment; it listens on port 17493):
+Start the Voicebox backend. It runs from its own checkout with its own environment (PyTorch + CUDA), so set
+`VOICEBOX_DIR` in `.env` to that folder (default: `.\voicebox` inside this project). It listens on port 17493:
 
 ```powershell
-python -m uvicorn backend.main:app --host 127.0.0.1 --port 17493
+.\scripts\start_voicebox.ps1     # does nothing if Voicebox is already running
 ```
 
 On the first run Aeon downloads the Kokoro and Whisper models through Voicebox if they are missing.
@@ -120,6 +121,7 @@ brain.py      LLM agent with tools, SQLite memory and history trimming; streams 
 tools.py      date/time, safe AST calculator, web search
 mouth.py      markdown cleanup, language detection, sentence splitter, two-thread speaker
 main.py       conversation loop and command-line options
+scripts/      start_voicebox.ps1: starts the Voicebox server from VOICEBOX_DIR
 ```
 
 Code comments are in Spanish: this project grew out of a step-by-step learning path.
