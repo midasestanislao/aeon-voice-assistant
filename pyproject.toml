@@ -1,0 +1,40 @@
+[project]
+name = "aeon-voice-assistant"
+version = "0.1.0"
+description = "Bilingual (ES/EN) hands-free voice assistant: LangChain agent with tools and persistent memory, local speech with Voicebox"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ddgs>=9.16",
+    "httpx>=0.28.1",
+    "langchain>=1.4.6",
+    "langchain-core>=1.6.12",
+    "langchain-openai>=1.7.2",
+    "langgraph>=1.2.16",
+    "langgraph-checkpoint-sqlite>=3.1.2",
+    "numpy>=2.0",
+    "pydantic>=2.14",
+    "pydantic-settings>=2.16",
+    "sounddevice>=0.5.6",
+    "soundfile>=0.14",
+    "webrtcvad-wheels>=2.0.14",
+]
+
+[dependency-groups]
+dev = ["ruff>=0.17"]
+
+[tool.uv]
+# Scripts, not an installable package: run with `uv run python main.py`
+package = false
+# The project lives in OneDrive: copying instead of hard-linking avoids cross-volume errors
+link-mode = "copy"
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+# E501: the formatter already wraps code; what stays long are texts (prompts, messages).
+# SIM905: "a b c".split() reads better than a 40-item list literal for the word lists in mouth.py.
+ignore = ["E501", "SIM905"]

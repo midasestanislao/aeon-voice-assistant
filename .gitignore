@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[oc]
+.venv/
+.ruff_cache/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Conversation memory and generated audio
+outputs/
+*.wav
